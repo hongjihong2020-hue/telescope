@@ -68,9 +68,6 @@ export default function ContactFooter() {
             ))}
           </div>
 
-          <a href="mailto:artoftravel2026@gmail.com" className="btn-dark" style={{ fontSize: 16, padding: "14px 32px" }}>
-            이메일로 문의하기 →
-          </a>
         </div>
       </section>
 
@@ -96,19 +93,9 @@ export default function ContactFooter() {
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)" }}>
             © 2025 (주)텔레스코프. All rights reserved.
           </div>
-          <div style={{ display: "flex", gap: 20 }}>
-            <a
-              href="/privacy"
-              style={{ fontSize: 13, color: "rgba(255,255,255,0.3)", textDecoration: "none" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.3)"; }}
-            >
-              개인정보처리방침
-            </a>
-            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.15)" }}>
-              서울시 강남구 테헤란로 79길 6, 3층
-            </span>
-          </div>
+          <span style={{ fontSize: 13, color: "rgba(255,255,255,0.15)" }}>
+            서울시 강남구 테헤란로 79길 6, 3층
+          </span>
         </div>
       </footer>
     </>
