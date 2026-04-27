@@ -100,8 +100,8 @@ export default function HeroSection() {
               <a href="#contact" className="btn-dark">
                 도입 문의하기 →
               </a>
-              <a href="#b2b" className="btn-ghost">
-                무료 PoC 신청
+              <a href="https://www.tel-co.net" className="btn-ghost" target="_blank" rel="noopener noreferrer">
+                웹 사이트 확인
               </a>
             </div>
 

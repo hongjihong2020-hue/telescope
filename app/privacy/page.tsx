@@ -47,7 +47,7 @@ export default function PrivacyPage() {
           },
           {
             title: "6. 개인정보 보호 책임자",
-            content: "개인정보 처리에 관한 문의사항은 아래로 연락주시기 바랍니다.\n\n책임자: 이현지 (대표)\n이메일: cookooroo@gmail.com\n주소: 서울시 강남구 테헤란로 79길 6, 3층",
+            content: "개인정보 처리에 관한 문의사항은 아래로 연락주시기 바랍니다.\n\n책임자: 이현지 (대표)\n이메일: artoftravel2026@gmail.com\n주소: 서울시 강남구 테헤란로 79길 6, 3층",
           },
         ].map((section) => (
           <div key={section.title} style={{ marginBottom: 40 }}>

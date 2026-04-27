@@ -40,7 +40,7 @@ export default function ContactFooter() {
             }}
           >
             {[
-              { label: "이메일", value: "cookooroo@gmail.com", href: "mailto:cookooroo@gmail.com" },
+              { label: "이메일", value: "artoftravel2026@gmail.com", href: "mailto:artoftravel2026@gmail.com" },
               { label: "웹사이트", value: "www.tel-co.net", href: "https://www.tel-co.net" },
               { label: "앱", value: "여행의기술", href: "#" },
             ].map((c) => (
@@ -68,7 +68,7 @@ export default function ContactFooter() {
             ))}
           </div>
 
-          <a href="mailto:cookooroo@gmail.com" className="btn-dark" style={{ fontSize: 16, padding: "14px 32px" }}>
+          <a href="mailto:artoftravel2026@gmail.com" className="btn-dark" style={{ fontSize: 16, padding: "14px 32px" }}>
             이메일로 문의하기 →
           </a>
         </div>
