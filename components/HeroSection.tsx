@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 const STATS = [
   { value: "15,000+", label: "POI 스팟" },
@@ -9,6 +10,8 @@ const STATS = [
 ];
 
 export default function HeroSection() {
+  const [imgLoaded, setImgLoaded] = useState(false);
+
   return (
     <section
       id="hero"
@@ -161,23 +164,20 @@ export default function HeroSection() {
                 alt="여행의기술 앱 스크린샷"
                 fill
                 style={{ objectFit: "cover" }}
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
+                onLoad={() => setImgLoaded(true)}
               />
-              {/* Placeholder 오버레이 */}
+              {/* Placeholder — 이미지 로드 완료 시 숨김 */}
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
-                  display: "flex",
+                  display: imgLoaded ? "none" : "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 12,
                   background: "#f5f5f5",
                 }}
-                className="screenshot-placeholder"
               >
                 <div
                   style={{
