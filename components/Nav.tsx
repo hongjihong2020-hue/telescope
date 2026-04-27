@@ -102,7 +102,6 @@ export default function Nav() {
             border: "none",
             cursor: "pointer",
             padding: 8,
-            display: "none",
           }}
           aria-label="메뉴"
         >

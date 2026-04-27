@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(주)텔레스코프 | 여행 콘텐츠 큐레이션·유통 전문기업</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: #fff; color: #242424; -webkit-font-smoothing: antialiased; }
+
+    /* ── 공통 ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-padding { padding: 96px 0; }
+    .label { font-size: 13px; font-weight: 600; color: #898989; letter-spacing: .1em; margin-bottom: 16px; }
+    .section-title { font-size: clamp(32px, 4vw, 48px); font-weight: 700; line-height: 1.1; color: #111; letter-spacing: -.02em; margin-bottom: 20px; }
+    .section-sub { font-size: 17px; font-weight: 300; color: #898989; line-height: 1.6; }
+
+    /* 섀도우 */
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 1px 5px -4px rgba(19,19,22,.7), 0 0 0 1px rgba(34,42,53,.08), 0 4px 8px rgba(34,42,53,.05); transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 2px 12px -4px rgba(19,19,22,.5), 0 0 0 1px rgba(34,42,53,.12), 0 8px 20px rgba(34,42,53,.08); }
+
+    /* 버튼 */
+    .btn-dark { display: inline-flex; align-items: center; gap: 6px; background: #242424; color: #fff; border-radius: 8px; font-weight: 600; font-size: 15px; padding: 12px 24px; text-decoration: none; border: none; cursor: pointer; box-shadow: rgba(255,255,255,.15) 0 2px 0 inset; transition: opacity .15s; }
+    .btn-dark:hover { opacity: .75; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: #242424; border-radius: 8px; font-weight: 600; font-size: 15px; padding: 11px 23px; text-decoration: none; box-shadow: 0 1px 5px -4px rgba(19,19,22,.7), 0 0 0 1px rgba(34,42,53,.08), 0 4px 8px rgba(34,42,53,.05); transition: box-shadow .15s; }
+    .btn-ghost:hover { box-shadow: 0 2px 12px -4px rgba(19,19,22,.5), 0 0 0 1px rgba(34,42,53,.12), 0 8px 20px rgba(34,42,53,.08); }
+
+    /* ── NAV ── */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: #fff; border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
+    #nav.scrolled { border-bottom-color: rgba(34,42,53,.08); box-shadow: 0 1px 8px rgba(34,42,53,.06); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-weight: 700; font-size: 17px; color: #111; text-decoration: none; letter-spacing: .04em; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-link { font-size: 14px; font-weight: 500; color: #111; text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: background .15s; }
+    .nav-link:hover { background: #f5f5f5; }
+    .nav-cta { margin-left: 8px; font-size: 14px !important; padding: 9px 18px !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
+    .ham-line { width: 22px; height: 2px; background: #242424; display: block; }
+    .mobile-menu { display: none; border-top: 1px solid rgba(34,42,53,.08); padding: 12px 24px 20px; }
+    .mobile-link { display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #111; text-decoration: none; border-bottom: 1px solid rgba(34,42,53,.06); }
+
+    /* ── HERO ── */
+    #hero { padding-top: 144px; padding-bottom: 96px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 9999px; box-shadow: 0 0 0 1px rgba(34,42,53,.1), 0 1px 4px rgba(34,42,53,.05); margin-bottom: 28px; font-size: 13px; font-weight: 500; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #242424; display: inline-block; }
+    .hero-h1 { font-size: clamp(40px,5vw,60px); font-weight: 700; line-height: 1.1; color: #111; margin-bottom: 24px; letter-spacing: -.02em; }
+    .hero-sub { font-size: 18px; font-weight: 300; color: #898989; line-height: 1.6; margin-bottom: 40px; max-width: 440px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 32px; margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(34,42,53,.08); }
+    .stat-val { font-size: 28px; font-weight: 700; color: #111; line-height: 1; margin-bottom: 4px; }
+    .stat-lbl { font-size: 13px; color: #898989; }
+
+    /* 폰 프레임 */
+    .phone-wrap { display: flex; justify-content: center; position: relative; }
+    .phone-frame { position: relative; width: 280px; height: 560px; border-radius: 32px; box-shadow: 0 4px 40px -8px rgba(19,19,22,.25), 0 0 0 1px rgba(34,42,53,.1); overflow: hidden; background: #f5f5f5; }
+    .phone-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .phone-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #f5f5f5; }
+    .phone-placeholder-icon { width: 56px; height: 56px; border-radius: 14px; background: #242424; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+    .phone-placeholder p { font-size: 13px; color: #898989; text-align: center; line-height: 1.5; }
+    .phone-glow { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle,rgba(34,42,53,.04) 0%,transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: -1; pointer-events: none; }
+
+    /* ── SERVICE ── */
+    #service { background: #f5f5f5; }
+    .trend-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .trend-card { padding: 28px; }
+    .trend-num { font-size: 12px; font-weight: 700; color: #898989; letter-spacing: .08em; margin-bottom: 12px; }
+    .trend-title { font-size: 20px; font-weight: 700; color: #111; margin-bottom: 10px; letter-spacing: -.01em; }
+    .trend-badge { display: inline-block; background: #242424; color: #fff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 9999px; margin-bottom: 14px; }
+    .trend-desc { font-size: 14px; color: #898989; line-height: 1.6; font-weight: 300; }
+
+    /* ── CONTENT ── */
+    #content { background: #fff; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 64px; }
+    .kpi-card { padding: 28px 24px; text-align: center; }
+    .kpi-val { font-size: clamp(28px,3vw,36px); font-weight: 700; color: #111; letter-spacing: -.02em; line-height: 1; margin-bottom: 8px; }
+    .kpi-lbl { font-size: 14px; color: #898989; }
+    .cat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .cat-card { overflow: hidden; }
+    .cat-img { position: relative; width: 100%; aspect-ratio: 4/3; background: #f0f0f0; overflow: hidden; }
+    .cat-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cat-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .cat-placeholder span { font-size: 11px; color: #898989; text-align: center; line-height: 1.6; }
+    .cat-body { padding: 20px 24px 24px; }
+    .cat-title { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 8px; letter-spacing: -.01em; }
+    .cat-desc { font-size: 14px; color: #898989; line-height: 1.6; font-weight: 300; }
+
+    /* ── B2B ── */
+    #b2b { background: #f5f5f5; }
+    .effect-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 48px; }
+    .effect-card { padding: 28px 24px; text-align: center; }
+    .effect-icon { font-size: 32px; margin-bottom: 12px; }
+    .effect-title { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 8px; }
+    .effect-desc { font-size: 13px; color: #898989; line-height: 1.5; font-weight: 300; }
+    .poc-banner { background: #242424; border-radius: 12px; padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+    .poc-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .poc-sub { font-size: 14px; color: rgba(255,255,255,.6); font-weight: 300; }
+    .btn-dark-inv { background: #fff; color: #242424; flex-shrink: 0; }
+    .b2b-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .b2b-section-head { background: #111; padding: 16px 24px; }
+    .b2b-section-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.5); letter-spacing: .08em; }
+    .plan-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid rgba(34,42,53,.06); }
+    .plan-row:last-child { border-bottom: none; }
+    .plan-row.highlight { background: #f5f5f5; }
+    .plan-name { font-size: 15px; font-weight: 600; color: #111; }
+    .plan-hint { font-size: 12px; color: #898989; margin-top: 2px; }
+    .plan-price { font-size: 18px; font-weight: 700; color: #111; text-align: right; white-space: pre-line; }
+    .plan-unit { font-size: 11px; color: #898989; }
+    .integration-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .int-item { padding: 20px; border-right: 1px solid rgba(34,42,53,.06); }
+    .int-item:last-child { border-right: none; }
+    .int-title { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 4px; }
+    .int-desc { font-size: 12px; color: #898989; font-weight: 300; }
+    .process-wrap { padding: 20px 24px; }
+    .process-label { font-size: 13px; font-weight: 600; color: #898989; letter-spacing: .08em; margin-bottom: 16px; }
+    .process-steps { display: flex; align-items: center; overflow-x: auto; gap: 0; }
+    .step { text-align: center; flex-shrink: 0; }
+    .step-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; margin: 0 auto 6px; }
+    .step-circle.dark { background: #242424; color: #fff; }
+    .step-circle.light { background: #f5f5f5; color: #898989; }
+    .step-label { font-size: 11px; font-weight: 500; color: #242424; white-space: pre-line; text-align: center; line-height: 1.3; }
+    .step-line { width: 20px; height: 1px; background: rgba(34,42,53,.15); margin: 0 4px 18px; flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    #contact { background: #111; }
+    .contact-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.4); letter-spacing: .1em; margin-bottom: 16px; }
+    .contact-title { font-size: clamp(32px,4vw,48px); font-weight: 700; line-height: 1.1; color: #fff; letter-spacing: -.02em; margin-bottom: 20px; }
+    .contact-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.6; margin-bottom: 48px; }
+    .contact-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .contact-card { display: block; background: rgba(255,255,255,.06); border-radius: 12px; padding: 20px 28px; min-width: 200px; text-decoration: none; box-shadow: 0 0 0 1px rgba(255,255,255,.1); transition: background .15s; }
+    .contact-card:hover { background: rgba(255,255,255,.1); }
+    .contact-card-label { font-size: 12px; color: rgba(255,255,255,.4); margin-bottom: 6px; font-weight: 500; }
+    .contact-card-val { font-size: 15px; font-weight: 600; color: #fff; }
+
+    /* ── FOOTER ── */
+    footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,.06); padding: 24px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,.3); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-link { font-size: 13px; color: rgba(255,255,255,.3); text-decoration: none; transition: color .15s; }
+    .footer-link:hover { color: rgba(255,255,255,.7); }
+    .footer-addr { font-size: 13px; color: rgba(255,255,255,.15); }
+
+    /* ── 반응형 ── */
+    @media (max-width: 768px) {
+      .section-padding { padding: 64px 0; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .phone-frame { width: 220px; height: 440px; }
+      .hero-stats { gap: 20px; }
+    }
+    @media (max-width: 900px) {
+      .trend-grid { grid-template-columns: repeat(2,1fr); }
+      .kpi-grid { grid-template-columns: repeat(2,1fr); }
+      .cat-grid { grid-template-columns: repeat(2,1fr); }
+      .effect-grid { grid-template-columns: repeat(2,1fr); }
+      .b2b-bottom { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .cat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">TELESCOPE</a>
+    <nav class="nav-links">
+      <a class="nav-link" href="#service">서비스</a>
+      <a class="nav-link" href="#content">콘텐츠</a>
+      <a class="nav-link" href="#b2b">B2B 도입</a>
+      <a class="btn-dark nav-cta" href="#contact">도입 문의 →</a>
+    </nav>
+    <button class="hamburger" id="ham" aria-label="메뉴">
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="mobile-link" href="#service">서비스</a>
+    <a class="mobile-link" href="#content">콘텐츠</a>
+    <a class="mobile-link" href="#b2b">B2B 도입</a>
+    <a class="btn-dark" href="#contact" style="margin-top:16px;width:100%;justify-content:center;">도입 문의 →</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge"><span class="badge-dot"></span>여행 콘텐츠 B2B 전문기업</div>
+        <h1 class="hero-h1">한국·일본<br>여행 콘텐츠를<br>당신의 플랫폼에</h1>
+        <p class="hero-sub">15,000개 이상의 검증된 POI 데이터를 API 하나로 연결하세요.<br>4주 안에 서비스 오픈이 가능합니다.</p>
+        <div class="hero-btns">
+          <a class="btn-dark" href="#contact">도입 문의하기 →</a>
+          <a class="btn-ghost" href="#b2b">무료 PoC 신청</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-val">15,000+</div><div class="stat-lbl">POI 스팟</div></div>
+          <div><div class="stat-val">963</div><div class="stat-lbl">큐레이션 스토리</div></div>
+          <div><div class="stat-val">4주</div><div class="stat-lbl">도입 기간</div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <img id="hero-img" src="images/screenshots/hero.png" alt="여행의기술 앱 스크린샷" onerror="this.style.display='none'" onload="document.getElementById('hero-ph').style.display='none'" />
+          <div class="phone-placeholder" id="hero-ph">
+            <div class="phone-placeholder-icon">✈</div>
+            <p>여행의기술 앱<br>스크린샷 등록<br><small>images/screenshots/hero.png</small></p>
+          </div>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service" class="section-padding">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:64px;">
+      <p class="label">WHY NOW</p>
+      <h2 class="section-title">여행의 무게중심이<br>바뀌고 있습니다</h2>
+      <p class="section-sub">예약 플랫폼 중심에서 콘텐츠 중심으로.<br>의사결정의 시작점이 달라졌습니다.</p>
+    </div>
+    <div class="trend-grid">
+      <div class="card trend-card">
+        <div class="trend-num">01</div>
+        <div class="trend-title">개인화</div>
+        <div class="trend-badge">FIT 비중 70% 돌파</div>
+        <p class="trend-desc">패키지에서 자유여행으로 전환이 가속되고 있습니다. 나만의 맞춤 여행 수요가 급증하고 있습니다.</p>
+      </div>
+      <div class="card trend-card">
+        <div class="trend-num">02</div>
+        <div class="trend-title">소도시</div>
+        <div class="trend-badge">재방문율·체류기간 증가</div>
+        <p class="trend-desc">대도시 1회 방문에서 소도시 N회 방문으로 여행 패턴이 변화하고 있습니다.</p>
+      </div>
+      <div class="card trend-card">
+        <div class="trend-num">03</div>
+        <div class="trend-title">경험 중심</div>
+        <div class="trend-badge">미식·드라이브·로컬 체험</div>
+        <p class="trend-desc">단순 관광을 넘어 로컬 라이프스타일 콘텐츠가 여행의 핵심이 되고 있습니다.</p>
+      </div>
+      <div class="card trend-card">
+        <div class="trend-num">04</div>
+        <div class="trend-title">콘텐츠가 결정</div>
+        <div class="trend-badge">SNS·유튜브 → 예약</div>
+        <p class="trend-desc">OTA 검색 전에 유튜브·SNS에서 여행지 의사결정이 완료됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section id="content" class="section-padding">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:64px;">
+      <p class="label">CONTENT</p>
+      <h2 class="section-title">한국 전 지역 +<br>일본 14개 도시</h2>
+      <p class="section-sub">지속적으로 확장 중인 검증된 여행 콘텐츠 데이터베이스</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="card kpi-card"><div class="kpi-val">15,000+</div><div class="kpi-lbl">전체 POI 스팟</div></div>
+      <div class="card kpi-card"><div class="kpi-val">963</div><div class="kpi-lbl">큐레이션 스토리</div></div>
+      <div class="card kpi-card"><div class="kpi-val">8,449</div><div class="kpi-lbl">맛집 데이터</div></div>
+      <div class="card kpi-card"><div class="kpi-val">3,147</div><div class="kpi-lbl">여행지 스팟</div></div>
+    </div>
+    <div class="cat-grid">
+      <div class="card cat-card">
+        <div class="cat-img">
+          <img src="images/screenshots/story.png" alt="스토리" onerror="this.style.display='none'" />
+          <div class="cat-placeholder"><span>스크린샷 등록<br><small style="color:#bbb">story.png</small></span></div>
+        </div>
+        <div class="cat-body"><div class="cat-title">스토리</div><p class="cat-desc">지역별 테마, 영화·드라마 촬영지, 유튜버 투어 등 큐레이션 스토리</p></div>
+      </div>
+      <div class="card cat-card">
+        <div class="cat-img">
+          <img src="images/screenshots/place.png" alt="여행지" onerror="this.style.display='none'" />
+          <div class="cat-placeholder"><span>스크린샷 등록<br><small style="color:#bbb">place.png</small></span></div>
+        </div>
+        <div class="cat-body"><div class="cat-title">여행지</div><p class="cat-desc">관광명소, 랜드마크, 테마파크, 기념관. 이미지·지도·영상을 한 번에</p></div>
+      </div>
+      <div class="card cat-card">
+        <div class="cat-img">
+          <img src="images/screenshots/restaurant.png" alt="맛집" onerror="this.style.display='none'" />
+          <div class="cat-placeholder"><span>스크린샷 등록<br><small style="color:#bbb">restaurant.png</small></span></div>
+        </div>
+        <div class="cat-body"><div class="cat-title">맛집</div><p class="cat-desc">유튜버·방송 소개 맛집, AI 리뷰. 광고 없는 현지 찐 맛집</p></div>
+      </div>
+      <div class="card cat-card">
+        <div class="cat-img">
+          <img src="images/screenshots/cafe.png" alt="카페" onerror="this.style.display='none'" />
+          <div class="cat-placeholder"><span>스크린샷 등록<br><small style="color:#bbb">cafe.png</small></span></div>
+        </div>
+        <div class="cat-body"><div class="cat-title">카페</div><p class="cat-desc">뷰 맛집, 빵 맛집, 브런치 카페. 대한민국 제과 명장 빵집 포함</p></div>
+      </div>
+      <div class="card cat-card">
+        <div class="cat-img">
+          <img src="images/screenshots/shopping.png" alt="쇼핑·체험" onerror="this.style.display='none'" />
+          <div class="cat-placeholder"><span>스크린샷 등록<br><small style="color:#bbb">shopping.png</small></span></div>
+        </div>
+        <div class="cat-body"><div class="cat-title">쇼핑·체험</div><p class="cat-desc">전통시장, 쇼핑스팟, 지역별 체험 스팟 정보</p></div>
+      </div>
+      <div class="card cat-card">
+        <div class="cat-img">
+          <img src="images/screenshots/youtube.png" alt="유튜버 투어" onerror="this.style.display='none'" />
+          <div class="cat-placeholder"><span>스크린샷 등록<br><small style="color:#bbb">youtube.png</small></span></div>
+        </div>
+        <div class="cat-body"><div class="cat-title">유튜버 투어</div><p class="cat-desc">여행·미식 유튜브 영상과 POI 스팟을 한 번에 연결</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- B2B -->
+<section id="b2b" class="section-padding">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:64px;">
+      <p class="label">B2B</p>
+      <h2 class="section-title">4주 안에 여행 콘텐츠를<br>서비스하세요</h2>
+      <p class="section-sub">REST API 또는 웹뷰 방식으로 빠르게 연동</p>
+    </div>
+    <div class="effect-grid">
+      <div class="card effect-card"><div class="effect-icon">💰</div><div class="effect-title">비용 절감</div><p class="effect-desc">자체 콘텐츠 구축 대비 시간·비용 대폭 절감</p></div>
+      <div class="card effect-card"><div class="effect-icon">⏱</div><div class="effect-title">4주 도입</div><p class="effect-desc">계약 후 4주 이내 서비스 오픈 가능</p></div>
+      <div class="card effect-card"><div class="effect-icon">📈</div><div class="effect-title">체류시간 증가</div><p class="effect-desc">풍부한 콘텐츠로 페이지 체류 시간 향상</p></div>
+      <div class="card effect-card"><div class="effect-icon">🎯</div><div class="effect-title">전환율 개선</div><p class="effect-desc">정보 신뢰도 상승으로 예약 전환율 개선</p></div>
+    </div>
+    <div class="poc-banner">
+      <div><div class="poc-title">무상 PoC 제공</div><p class="poc-sub">4주 체험 후 비용을 결정하세요. 부담 없이 시작할 수 있습니다.</p></div>
+      <a class="btn-dark btn-dark-inv" href="#contact">무료 PoC 신청 →</a>
+    </div>
+    <div class="b2b-bottom">
+      <div class="card" style="overflow:hidden;">
+        <div class="b2b-section-head"><span class="b2b-section-label">PRICING</span></div>
+        <div class="plan-row"><div><div class="plan-name">Starter</div><div class="plan-hint">기본 콘텐츠 범위</div></div><div><div class="plan-price">1,200만원~</div><div class="plan-unit">연간</div></div></div>
+        <div class="plan-row highlight"><div><div class="plan-name">Standard</div><div class="plan-hint">API 호출량 기준</div></div><div><div class="plan-price">협의</div><div class="plan-unit">콘텐츠 범위 확장</div></div></div>
+        <div class="plan-row"><div><div class="plan-name">Enterprise</div><div class="plan-hint">전체 API 무제한</div></div><div><div class="plan-price">최대 6,000만원</div><div class="plan-unit">연간</div></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card" style="overflow:hidden;">
+          <div class="b2b-section-head"><span class="b2b-section-label">INTEGRATION</span></div>
+          <div class="integration-grid">
+            <div class="int-item"><div class="int-title">REST API</div><p class="int-desc">완전한 UX 커스터마이징</p></div>
+            <div class="int-item"><div class="int-title">웹 뷰</div><p class="int-desc">최소 리소스, 즉시 도입</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="process-wrap">
+            <div class="process-label">PROCESS</div>
+            <div class="process-steps">
+              <div class="step"><div class="step-circle dark">01</div><div class="step-label">문의·상담</div></div>
+              <div class="step-line"></div>
+              <div class="step"><div class="step-circle light">02</div><div class="step-label">무상 PoC&#10;(4주)</div></div>
+              <div class="step-line"></div>
+              <div class="step"><div class="step-circle light">03</div><div class="step-label">비용 협의·계약</div></div>
+              <div class="step-line"></div>
+              <div class="step"><div class="step-circle light">04</div><div class="step-label">개발 연동</div></div>
+              <div class="step-line"></div>
+              <div class="step"><div class="step-circle dark">05</div><div class="step-label">서비스 오픈</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-padding">
+  <div class="container" style="text-align:center;">
+    <p class="contact-label">CONTACT</p>
+    <h2 class="contact-title">콘텐츠 도입 ·<br>제휴 문의</h2>
+    <p class="contact-sub">무상 PoC부터 시작하세요.<br>4주 후 비용을 결정합니다.</p>
+    <div class="contact-cards">
+      <a class="contact-card" href="mailto:cookooroo@gmail.com"><div class="contact-card-label">이메일</div><div class="contact-card-val">cookooroo@gmail.com</div></a>
+      <a class="contact-card" href="https://www.tel-co.net" target="_blank"><div class="contact-card-label">웹사이트</div><div class="contact-card-val">www.tel-co.net</div></a>
+      <a class="contact-card" href="#"><div class="contact-card-label">앱</div><div class="contact-card-val">여행의기술</div></a>
+    </div>
+    <a class="btn-dark" href="mailto:cookooroo@gmail.com" style="font-size:16px;padding:14px 32px;">이메일로 문의하기 →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2025 (주)텔레스코프. All rights reserved.</span>
+    <div class="footer-links">
+      <a class="footer-link" href="privacy.html">개인정보처리방침</a>
+      <span class="footer-addr">서울시 강남구 테헤란로 79길 6, 3층</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 스크롤 시 Nav 그림자
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive: true });
+
+  // 햄버거 메뉴
+  document.getElementById('ham').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
+  });
+  document.querySelectorAll('.mobile-link, .mobile-menu .btn-dark').forEach(el => {
+    el.addEventListener('click', () => { document.getElementById('mobile-menu').style.display = 'none'; });
+  });
+
+  // hero 이미지 로드 확인 (캐시된 경우 onload 미발화 대응)
+  const heroImg = document.getElementById('hero-img');
+  if (heroImg && heroImg.complete && heroImg.naturalWidth > 0) {
+    document.getElementById('hero-ph').style.display = 'none';
+  }
+</script>
+</body>
+</html>
