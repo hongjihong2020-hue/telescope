@@ -62,7 +62,7 @@ export default function B2BSection() {
           ))}
         </div>
 
-        {/* 무상 PoC 배너 */}
+        {/* 회사소개서 다운로드 배너 */}
         <div
           style={{
             background: "#242424",
@@ -77,14 +77,19 @@ export default function B2BSection() {
         >
           <div>
             <div style={{ fontSize: 18, fontWeight: 700, color: "#ffffff", marginBottom: 6 }}>
-              무상 PoC 제공
+              회사소개서 다운로드
             </div>
             <div style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", fontWeight: 300 }}>
-              4주 체험 후 비용을 결정하세요. 부담 없이 시작할 수 있습니다.
+              텔레스코프의 서비스와 도입 사례를 한눈에 확인하세요.
             </div>
           </div>
-          <a href="#contact" className="btn-dark" style={{ background: "#ffffff", color: "#242424", flexShrink: 0 }}>
-            무료 PoC 신청 →
+          <a
+            href="/telescope-company-profile-202604.pdf"
+            download
+            className="btn-dark"
+            style={{ background: "#ffffff", color: "#242424", flexShrink: 0 }}
+          >
+            PDF 다운로드 →
           </a>
         </div>
 
