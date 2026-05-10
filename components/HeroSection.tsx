@@ -73,7 +73,7 @@ export default function HeroSection() {
                 letterSpacing: "-0.02em",
               }}
             >
-              한국·일본
+              소도시 & 스토리
               <br />
               여행 콘텐츠를
               <br />
@@ -90,7 +90,7 @@ export default function HeroSection() {
                 maxWidth: 440,
               }}
             >
-              15,000개 이상의 검증된 POI 데이터를 API 하나로 연결하세요.
+              대한민국 전 지역 15,000개 이상의 검증된 POI 데이터를 API 하나로 연결하세요.
               <br />
               4주 안에 서비스 오픈이 가능합니다.
             </p>

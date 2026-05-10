@@ -24,9 +24,9 @@ export default function ContactFooter() {
             제휴 문의
           </h2>
           <p style={{ fontSize: 17, fontWeight: 300, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, marginBottom: 48 }}>
-            무상 PoC부터 시작하세요.
+            API 또는 웹뷰 방식으로
             <br />
-            4주 후 비용을 결정합니다.
+            4주 안에 서비스를 오픈하세요.
           </p>
 
           {/* 연락처 카드 3개 */}
@@ -91,7 +91,7 @@ export default function ContactFooter() {
           }}
         >
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.3)" }}>
-            © 2025 (주)텔레스코프. All rights reserved.
+            © 2026 (주)텔레스코프. All rights reserved.
           </div>
           <span style={{ fontSize: 13, color: "rgba(255,255,255,0.15)" }}>
             서울시 강남구 테헤란로 79길 6, 3층
