@@ -46,21 +46,15 @@ const KPIS = [
 
 const CATEGORIES = [
   {
-    id: "story",
-    title: "스토리",
-    desc: "지역별 테마, 영화·드라마 촬영지, 유튜버 투어 등 큐레이션 스토리",
-    filename: "story.png",
-  },
-  {
     id: "place",
     title: "여행지",
-    desc: "관광명소, 랜드마크, 테마파크, 기념관. 이미지·지도·영상을 한 번에",
+    desc: "관광명소, 랜드마크, 테마파크, 기념관. 이미지·주소·지도·영상을 한 화면에서",
     filename: "place.png",
   },
   {
     id: "restaurant",
     title: "맛집",
-    desc: "유튜버·방송 소개 맛집, AI 리뷰. 광고 없는 현지 찐 맛집",
+    desc: "흑백요리사·허영만 백반기행 등 TV 방송, 성시경·풍자·쯔양 등 유튜버, 미쉐린·블루리본 기관인증 큐레이션",
     filename: "restaurant.png",
   },
   {
@@ -72,14 +66,32 @@ const CATEGORIES = [
   {
     id: "shopping",
     title: "쇼핑·체험",
-    desc: "전통시장, 쇼핑스팟, 지역별 체험 스팟 정보",
+    desc: "지역별 쇼핑 스팟, 전통시장, 체험 프로그램을 한눈에",
     filename: "shopping.png",
+  },
+  {
+    id: "kcontent",
+    title: "K-콘텐츠 투어",
+    desc: "영화·드라마 촬영지, K-스타 성지. 케이팝데몬헌터스, 기생충, 폭싹속았수다, BTS 촬영지 등",
+    filename: "story.png",
   },
   {
     id: "youtube",
     title: "유튜버 투어",
-    desc: "여행·미식 유튜브 영상과 POI 스팟을 한 번에 연결",
+    desc: "빠니보틀, 곽튜브, 할명수 등 인기 여행 유튜버의 코스를 영상과 스팟 정보를 함께",
     filename: "youtube.png",
+  },
+  {
+    id: "theme",
+    title: "테마 투어",
+    desc: "부산 근현대사, 대전 빵지순례, 경주 신라역사, 대한민국 100대 명산, 유네스코 투어 등",
+    filename: "theme.png",
+  },
+  {
+    id: "ai",
+    title: "AI 리뷰",
+    desc: "구글·네이버·카카오 등 다양한 플랫폼 후기를 AI가 요약. 스팟 상세 페이지에서 바로 확인",
+    filename: "ai.png",
   },
 ];
 
@@ -102,12 +114,12 @@ export default function ContentSection() {
               marginBottom: 20,
             }}
           >
-            한국 전 지역 +
+            대한민국 전 지역
             <br />
-            일본 14개 도시
+            소도시 & 스토리
           </h2>
           <p style={{ fontSize: 17, fontWeight: 300, color: "#898989", lineHeight: 1.6 }}>
-            지속적으로 확장 중인 검증된 여행 콘텐츠 데이터베이스
+            제주, 부산, 경주, 강릉 등 전국 소도시의 검증된 여행 콘텐츠 데이터베이스
           </p>
         </div>
 
