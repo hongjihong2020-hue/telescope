@@ -1,3 +1,5 @@
+"use client";
+
 function CategoryCard({ cat }: { cat: { id: string; title: string; desc: string; filename: string } }) {
   return (
     <div
