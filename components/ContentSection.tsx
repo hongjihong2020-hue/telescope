@@ -1,10 +1,4 @@
-"use client";
-
-import Image from "next/image";
-import { useState } from "react";
-
 function CategoryCard({ cat }: { cat: { id: string; title: string; desc: string; filename: string } }) {
-  const [loaded, setLoaded] = useState(false);
   return (
     <div
       className="card-shadow"
@@ -12,23 +6,6 @@ function CategoryCard({ cat }: { cat: { id: string; title: string; desc: string;
       onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; }}
       onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
     >
-      <div style={{ position: "relative", width: "100%", aspectRatio: "4/3", background: "#f5f5f5", overflow: "hidden" }}>
-        <Image
-          src={`/images/screenshots/${cat.filename}`}
-          alt={`${cat.title} 스크린샷`}
-          fill
-          style={{ objectFit: "cover" }}
-          onLoad={() => setLoaded(true)}
-        />
-        {!loaded && (
-          <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, background: "#f5f5f5" }}>
-            <div style={{ fontSize: 11, color: "#898989", textAlign: "center", lineHeight: 1.6 }}>
-              스크린샷 등록<br />
-              <span style={{ color: "#bbb" }}>screenshots/{cat.filename}</span>
-            </div>
-          </div>
-        )}
-      </div>
       <div style={{ padding: "20px 24px 24px" }}>
         <h3 style={{ fontSize: 17, fontWeight: 700, color: "#111111", marginBottom: 8, letterSpacing: "-0.01em" }}>{cat.title}</h3>
         <p style={{ fontSize: 14, color: "#898989", lineHeight: 1.6, fontWeight: 300 }}>{cat.desc}</p>
