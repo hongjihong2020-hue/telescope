@@ -55,22 +55,25 @@ body {
 .btn-dark:hover { opacity: 0.75; }
 
 .btn-ghost {
-  background: var(--white);
-  color: var(--charcoal);
+  background: linear-gradient(135deg, #6366f1, #2563eb);
+  color: #ffffff;
   border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
-  padding: 11px 23px;
+  padding: 12px 24px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.15s ease;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  transition: opacity 0.15s ease, box-shadow 0.15s ease;
   cursor: pointer;
   border: none;
   text-decoration: none;
 }
-.btn-ghost:hover { box-shadow: var(--shadow-card-hover); }
+.btn-ghost:hover {
+  opacity: 0.88;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
 
 .section-padding {
   padding-top: 96px;
